@@ -1,0 +1,24 @@
+<div class="login-outer">
+  <div class="middle">
+    <div class="row">
+      <form [formGroup]="userForm" >
+        <div class="row login-form">
+          <h5>Login</h5>
+          <div class="col s12">
+            <label for="email">Email</label>
+            <input value="" id="email" formControlName="email" type="email" class="validate">
+            <span class="red-text" *ngIf="email.dirty && !email.valid">Invalid Email</span>
+          </div>
+          <div class="col s12">
+            <label for="password">Password</label>
+            <input value="" id="password" formControlName="password" type="password" class="validate">
+            <span class="red-text" *ngIf="password.dirty && !password.valid">Invalid Password</span>
+          </div>
+          <button class="btn waves-effect waves-light right" type="button" (click)="doLogin()" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

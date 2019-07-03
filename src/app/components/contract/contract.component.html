@@ -1,0 +1,82 @@
+<div class="row container">
+  <div class="row">
+    <form [formGroup]="contractForm">
+      <div class="row login-form">
+        <h5>Contract Form</h5>
+        <div class="col s12">
+          <label for="name">Contract Name</label>
+          <input value="" [(ngModel)]="contract.name" id="name" formControlName="name" type="text" class="validate">
+          <span class="red-text" *ngIf="name && name.dirty && !name.valid">Invalid Name</span>
+        </div>
+        <div class="col s12">
+          <label for="address">Contract Address</label>
+          <input value="" id="address" [(ngModel)]="contract.address" formControlName="address" type="text" class="validate">
+          <span class="red-text" *ngIf="address && address.dirty && !address.valid">Invalid address</span>
+        </div>
+        <div class="col s12">
+          <label for="owner">Contract Owner</label>
+          <input value="" id="owner" [(ngModel)]="contract.owner" formControlName="owner" type="text" class="validate">
+          <span class="red-text" *ngIf="owner && owner.dirty && !owner.valid">Invalid owner</span>
+        </div>
+        <div class="col s12">
+          <label for="symbol">Contract Symbol</label>
+          <input value="" id="symbol" [(ngModel)]="contract.symbol" formControlName="owner" formControlName="symbol" type="text" class="validate">
+          <span class="red-text" *ngIf="symbol && symbol.dirty && !symbol.valid">Invalid symbol</span>
+        </div>
+        <div class="col s12">
+          <label for="total_supply">Contract Total Supply</label>
+          <input value="" id="total_supply" [(ngModel)]="contract.total_supply" formControlName="total_supply" type="text" class="validate">
+          <span class="red-text" *ngIf="total_supply && total_supply.dirty && !total_supply.valid">Invalid Total Supply</span>
+        </div>
+        <div class="col s12">
+          <label for="abi">Contract ABI</label>
+          <textarea class="form-control" id="name" [(ngModel)]="contract.abi" formControlName="abi" type="text" class="validate"></textarea>
+          <span class="red-text" *ngIf="abi && abi.dirty && !abi.valid">Invalid ABI</span>
+        </div>
+        <div class="col s12">
+          <label for="abi">Contract Deimals</label>
+          <input class="form-control" id="gas" [(ngModel)]="contract.decimals" formControlName="decimals" type="number" min="0" class="validate">
+          <span class="red-text" *ngIf="decimals && decimals.dirty && !decimals.valid">Invalid Decimals</span>
+        </div>
+        <div class="col s12">
+          <label for="abi">Contract Gas</label>
+          <input class="form-control" id="gas" [(ngModel)]="contract.gas" formControlName="gas" type="number" min="0" class="validate">
+          <span class="red-text" *ngIf="gas && gas.dirty && !gas.valid">Invalid Gas</span>
+        </div>
+        <div class="col s12">
+          <label for="abi">Contract Gas Price</label>
+          <input class="form-control" id="gas" [(ngModel)]="contract.gasPrice" formControlName="gasPrice" type="number" min="0" class="validate">
+          <span class="red-text" *ngIf="gasPrice && gasPrice.dirty && !gasPrice.valid">Invalid Gas Price</span>
+        </div>
+        <button class="btn waves-effect waves-light right" type="button" (click)="updateContractForm ? updateContract() : addContract()"
+          name="action">{{updateContractForm?'Update': 'Save'}}
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <table class="table">
+    <tr>
+      <th>Contract Name</th>
+      <th>Contract Symbol</th>
+      <th>Contract Total Supply</th>
+      <th>Contract Address</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let item of contracts; let i = index">
+      <td>{{item.name}}</td>
+      <td>{{item.symbol}}</td>
+      <td>{{item.total_supply}}</td>
+      <td>{{item.address}}</td>
+      <td>
+        <a href="javascript:void(0)" (click)="removeContract(item._id, i)">Delete</a> |
+        <a href="javascript:void(0)" (click)="viewContract(item)">View</a>
+      </td>
+    </tr>
+    <tr *ngIf="contracts.length === 0">
+      <td colspan="4">
+        <p>No Results Found</p>
+      </td>
+    </tr>
+  </table>
+</div>
